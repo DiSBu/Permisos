@@ -12,11 +12,12 @@ export class CreatePermisoComponent {
   public baseUrl: string;
   public permisoId: Permiso;
 
-  newPermisoEditor: any = {};
+  public newPermisoEditor: any;
 
   constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.httpClient = httpClient;
     this.baseUrl = baseUrl;
+    this.newPermisoEditor = { apellidosEmpleado: null, nombreEmpleado: null, fechaPermiso: null};
   }
 
   addPermiso(): void {
@@ -27,6 +28,7 @@ export class CreatePermisoComponent {
       fechaPermiso: this.newPermisoEditor.fechaPermiso,
     };
 
+    this.clear();
     this.httpClient.post<Permiso>(this.baseUrl + 'api/Permisos', permiso).subscribe((result) => {
       this.permisoId = result;
     }, error => {
@@ -42,7 +44,7 @@ export class CreatePermisoComponent {
             setTimeout(() => document.getElementById("ApellidosEmpleado").focus(), 250);
           }
           if (error.error.FechaPermiso) {
-            this.newPermisoEditor.errorFechaPermiso = error.error.FechaPermiso[0];
+            this.newPermisoEditor.errorfechaPermiso = error.error.FechaPermiso[0];
             setTimeout(() => document.getElementById("FechaPermiso").focus(), 250);
           }
         }
@@ -52,5 +54,11 @@ export class CreatePermisoComponent {
   newPermisoCancelled(): void {
     //this.newListModalRef.hide();
     this.newPermisoEditor = {};
+  }
+
+  clear(): void {
+    this.newPermisoEditor.errornombreEmpleado = null;
+    this.newPermisoEditor.errorapellidosEmpleado = null;
+    this.newPermisoEditor.errorfechaPermiso = null;
   }
 }

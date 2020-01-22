@@ -10,7 +10,7 @@
     <div class="form-group">
       <label for="apellidosEmpleado">Apellidos Empleado</label>
       <input type="text" class="form-control" id="apellidosEmpleado" placeholder="Apellidos Empleado..." [(ngModel)]="newPermisoEditor.apellidosEmpleado"
-             [ngClass]="{ 'is-invalid': newPermisoEditor.error }" (keyup.enter)="addPermiso()" />
+             [ngClass]="{ 'is-invalid': newPermisoEditor.errorapellidosEmpleado }" (keyup.enter)="addPermiso()" />
       <div *ngIf="newPermisoEditor.errorapellidosEmpleado" class="invalid-feedback">
         {{ newPermisoEditor.errorapellidosEmpleado }}
       </div>
@@ -18,7 +18,7 @@
     <div class="form-group">
       <label for="nombreEmpleado">Nombres Empleado</label>
       <input type="text" class="form-control" id="nombreEmpleado" placeholder="Nombres Empleado..." [(ngModel)]="newPermisoEditor.nombreEmpleado"
-             [ngClass]="{ 'is-invalid': newPermisoEditor.error }" (keyup.enter)="addPermiso()" />
+             [ngClass]="{ 'is-invalid': newPermisoEditor.errornombreEmpleado }" (keyup.enter)="addPermiso()" />
       <div *ngIf="newPermisoEditor.errornombreEmpleado" class="invalid-feedback">
         {{ newPermisoEditor.errornombreEmpleado }}
       </div>
@@ -26,7 +26,7 @@
     <div class="form-group">
       <label for="fechaPermiso">Fecha</label>
       <input type="text" class="form-control" id="fechaPermiso" placeholder="dd/mm/yyy..." [(ngModel)]="newPermisoEditor.fechaPermiso"
-             [ngClass]="{ 'is-invalid': newPermisoEditor.error }" (keyup.enter)="addPermiso()" />
+             [ngClass]="{ 'is-invalid': newPermisoEditor.errorfechaPermiso }" (keyup.enter)="addPermiso()" />
       <div *ngIf="newPermisoEditor.errorfechaPermiso" class="invalid-feedback">
         {{ newPermisoEditor.errorfechaPermiso }}
       </div>
