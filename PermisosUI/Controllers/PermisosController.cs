@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Permisos.Application.PermisoLists.Queries.GetPermisos;
+using Permisos.Application.Permisos.Queries.GetPermisos;
 
 namespace Permisos.WebUI.Controllers
 {

@@ -179,12 +179,12 @@
         ]
       }
     },
-    "/api/PermisoLists": {
+    "/api/TipoPermisos": {
       "get": {
         "tags": [
-          "PermisoLists"
+          "TipoPermisos"
         ],
-        "operationId": "PermisoLists_Get",
+        "operationId": "TipoPermisos_Get",
         "responses": {
           "200": {
             "description": "",
@@ -205,15 +205,15 @@
       },
       "post": {
         "tags": [
-          "PermisoLists"
+          "TipoPermisos"
         ],
-        "operationId": "PermisoLists_Create",
+        "operationId": "TipoPermisos_Create",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePermisoListCommand"
+                "$ref": "#/components/schemas/CreateTipoPermisoCommand"
               }
             }
           },
@@ -240,12 +240,12 @@
         ]
       }
     },
-    "/api/PermisoLists/{id}": {
+    "/api/TipoPermisos/{id}": {
       "get": {
         "tags": [
-          "PermisoLists"
+          "TipoPermisos"
         ],
-        "operationId": "PermisoLists_Get2",
+        "operationId": "TipoPermisos_Get2",
         "parameters": [
           {
             "name": "id",
@@ -279,9 +279,9 @@
       },
       "put": {
         "tags": [
-          "PermisoLists"
+          "TipoPermisos"
         ],
-        "operationId": "PermisoLists_Update",
+        "operationId": "TipoPermisos_Update",
         "parameters": [
           {
             "name": "id",
@@ -299,7 +299,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdatePermisoListCommand"
+                "$ref": "#/components/schemas/UpdateTipoPermisoCommand"
               }
             }
           },
@@ -327,9 +327,9 @@
       },
       "delete": {
         "tags": [
-          "PermisoLists"
+          "TipoPermisos"
         ],
-        "operationId": "PermisoLists_Delete",
+        "operationId": "TipoPermisos_Delete",
         "parameters": [
           {
             "name": "id",
@@ -476,7 +476,7 @@
             "type": "array",
             "nullable": true,
             "items": {
-              "$ref": "#/components/schemas/PermisoListDto"
+              "$ref": "#/components/schemas/PermisoDto"
             }
           }
         }
@@ -495,7 +495,7 @@
           }
         }
       },
-      "PermisoListDto": {
+      "PermisoDto": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -545,7 +545,7 @@
           }
         }
       },
-      "CreatePermisoListCommand": {
+      "CreateTipoPermisoCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -555,7 +555,7 @@
           }
         }
       },
-      "UpdatePermisoListCommand": {
+      "UpdateTipoPermisoCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {

@@ -7,7 +7,7 @@ namespace Permisos.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<PermisoList> PermisoLists { get; set; }
+        DbSet<TipoPermiso> TipoPermisos { get; set; }
 
         DbSet<Permiso> Permisos { get; set; }
 

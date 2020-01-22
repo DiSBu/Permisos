@@ -8,7 +8,7 @@ namespace Permisos.Infrastructure.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PermisoLists",
+                name: "TipoPermisos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -22,7 +22,7 @@ namespace Permisos.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PermisoLists", x => x.Id);
+                    table.PrimaryKey("PK_TipoPermisos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,9 +46,9 @@ namespace Permisos.Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Permisos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Permisos_PermisoLists_ListId",
+                        name: "FK_Permisos_TipoPermisos_ListId",
                         column: x => x.ListId,
-                        principalTable: "PermisoLists",
+                        principalTable: "TipoPermisos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -65,7 +65,7 @@ namespace Permisos.Infrastructure.Persistence.Migrations
                 name: "Permisos");
 
             migrationBuilder.DropTable(
-                name: "PermisoLists");
+                name: "TipoPermisos");
         }
     }
 }

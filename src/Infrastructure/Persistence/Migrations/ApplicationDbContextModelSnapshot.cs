@@ -65,7 +65,7 @@ namespace Permisos.Infrastructure.Persistence.Migrations
                     b.ToTable("Permisos");
                 });
 
-            modelBuilder.Entity("Permisos.Domain.Entities.PermisoList", b =>
+            modelBuilder.Entity("Permisos.Domain.Entities.TipoPermiso", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,7 +94,7 @@ namespace Permisos.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PermisoLists");
+                    b.ToTable("TipoPermisos");
                 });
 
             modelBuilder.Entity("Permisos.Infrastructure.Identity.ApplicationUser", b =>
@@ -381,7 +381,7 @@ namespace Permisos.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("Permisos.Domain.Entities.Permiso", b =>
                 {
-                    b.HasOne("Permisos.Domain.Entities.PermisoList", "List")
+                    b.HasOne("Permisos.Domain.Entities.TipoPermiso", "List")
                         .WithMany("Items")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)

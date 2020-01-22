@@ -8,7 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Common\Behaviours\RequestLogger.cs" />
-    <Compile Remove="PermisoLists\Queries\GetPermisos\PriorityLevelDto.cs" />
+    <Compile Remove="Permisos\Queries\GetPermisos\PermisoListDto.cs" />
+    <Compile Remove="Permisos\Queries\GetPermisos\PriorityLevelDto.cs" />
   </ItemGroup>
 
   <ItemGroup>

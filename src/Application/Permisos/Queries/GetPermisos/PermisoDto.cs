@@ -3,7 +3,7 @@ using Permisos.Application.Common.Mappings;
 using Permisos.Domain.Entities;
 using System;
 
-namespace Permisos.Application.PermisoLists.Queries.GetPermisos
+namespace Permisos.Application.Permisos.Queries.GetPermisos
 {
     public class PermisoDto : IMapFrom<Permiso>
     {

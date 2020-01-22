@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Permisos.Application.PermisoLists.Queries.GetPermisos
+namespace Permisos.Application.Permisos.Queries.GetPermisos
 {
     public class GetPermisosQuery : IRequest<PermisosVm>
     {
@@ -26,8 +26,8 @@ namespace Permisos.Application.PermisoLists.Queries.GetPermisos
             {
                 var vm = new PermisosVm();
 
-                vm.Lists = await _context.PermisoLists
-                    .ProjectTo<PermisoListDto>(_mapper.ConfigurationProvider)
+                vm.Lists = await _context.Permisos
+                    .ProjectTo<PermisoDto>(_mapper.ConfigurationProvider)
                     .OrderBy(t => t.Id)
                     .ToListAsync(cancellationToken);
 

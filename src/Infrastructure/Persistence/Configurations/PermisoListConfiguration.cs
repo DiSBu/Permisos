@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Permisos.Infrastructure.Persistence.Configurations
 {
-    public class PermisoListConfiguration : IEntityTypeConfiguration<PermisoList>
+    public class TipoPermisoConfiguration : IEntityTypeConfiguration<TipoPermiso>
     {
-        public void Configure(EntityTypeBuilder<PermisoList> builder)
+        public void Configure(EntityTypeBuilder<TipoPermiso> builder)
         {
             builder.Property(t => t.Id)
                 //.HasMaxLength(200)

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Permisos.Application.PermisoLists.Queries.GetPermisos
+namespace Permisos.Application.Permisos.Queries.GetPermisos
 {
     public class PermisosVm
     {
@@ -13,6 +13,6 @@ namespace Permisos.Application.PermisoLists.Queries.GetPermisos
         //        .Select(p => new PriorityLevelDto { Value = (int)p, Name = p.ToString() })
         //        .ToList();
 
-        public IList<PermisoListDto> Lists { get; set; }
+        public IList<PermisoDto> Lists { get; set; }
     }
 }

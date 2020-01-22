@@ -27,7 +27,7 @@ namespace Permisos.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
-        public DbSet<PermisoList> PermisoLists { get; set; }
+        public DbSet<TipoPermiso> TipoPermisos { get; set; }
 
         public DbSet<Permiso> Permisos { get; set; }
 
