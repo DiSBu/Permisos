@@ -40,10 +40,10 @@ namespace Permisos.Application.Common.Behaviours
             {
                 var requestName = typeof(TRequest).Name;
                 var userId = _currentUserService.UserId;
-                var userName = await _identityService.GetUserNameAsync(userId);
+                //var userName = await _identityService.GetUserNameAsync(userId);
 
                 _logger.LogWarning("Permisos Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
-                    requestName, elapsedMilliseconds, userId, userName, request);
+                    requestName, elapsedMilliseconds, userId, "userName", request);
             }
 
             return response;

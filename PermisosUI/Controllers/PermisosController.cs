@@ -16,9 +16,9 @@ namespace Permisos.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<long> Post()
+        public async Task<ActionResult<long>> Post(CreatePermisoCommand createPermisoCommand)
         {
-            return await Mediator.Send(new CreatePermisoCommand());
+            return await Mediator.Send(createPermisoCommand);
         }
     }
 }

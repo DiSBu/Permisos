@@ -1,25 +1,43 @@
 <h1>Solicitar Permiso</h1>
 
-<table class='table' *ngIf="permisos">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nombre Empleado</th>
-      <th>Apellidos Empleado</th>
-      <th>Tipo Permiso</th>
-      <th>Fecha Permiso</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let permiso of permisos">
-      <td>{{ permiso.Id }}</td>
-      <td>{{ permiso.nombreEmpleado }}</td>
-      <td>{{ permiso.apellidosEmpleado }}</td>
-      <td>{{ permiso.tipoPermiso }}</td>
-      <td>{{ permiso.fechaPermiso }}</td>
-    </tr>
-  </tbody>
-</table>
-<div>
-  <input type="button" value="Solicitar" (click)="createPermiso()" />
-</div>
+  <div class="modal-header clearfix">
+    <h4 class="modal-title float-left">Datos del permiso</h4>
+    <button type="button" class="close float-right" aria-label="Close" (click)="newPermisoCancelled()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="apellidosEmpleado">Apellidos Empleado</label>
+      <input type="text" class="form-control" id="apellidosEmpleado" placeholder="Apellidos Empleado..." [(ngModel)]="newPermisoEditor.apellidosEmpleado"
+             [ngClass]="{ 'is-invalid': newPermisoEditor.error }" (keyup.enter)="addPermiso()" />
+      <div *ngIf="newPermisoEditor.errorapellidosEmpleado" class="invalid-feedback">
+        {{ newPermisoEditor.errorapellidosEmpleado }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nombreEmpleado">Nombres Empleado</label>
+      <input type="text" class="form-control" id="nombreEmpleado" placeholder="Nombres Empleado..." [(ngModel)]="newPermisoEditor.nombreEmpleado"
+             [ngClass]="{ 'is-invalid': newPermisoEditor.error }" (keyup.enter)="addPermiso()" />
+      <div *ngIf="newPermisoEditor.errornombreEmpleado" class="invalid-feedback">
+        {{ newPermisoEditor.errornombreEmpleado }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="fechaPermiso">Fecha</label>
+      <input type="text" class="form-control" id="fechaPermiso" placeholder="dd/mm/yyy..." [(ngModel)]="newPermisoEditor.fechaPermiso"
+             [ngClass]="{ 'is-invalid': newPermisoEditor.error }" (keyup.enter)="addPermiso()" />
+      <div *ngIf="newPermisoEditor.errorfechaPermiso" class="invalid-feedback">
+        {{ newPermisoEditor.errorfechaPermiso }}
+      </div>
+    </div>
+    <div *ngIf="debug">
+      <pre>{{ newPermisoEditor | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="text-right">
+      <button class="btn btn-default" (click)="newPermisoCancelled()">Cancel</button>
+      <button class="btn btn-primary" (click)="addPermiso()">Solicitar</button>
+    </div>
+  </div>
