@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="WeatherForecasts\**" />
+    <EmbeddedResource Remove="WeatherForecasts\**" />
+    <None Remove="WeatherForecasts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Common\Behaviours\RequestLogger.cs" />
     <Compile Remove="Permisos\Queries\GetPermisos\PermisoListDto.cs" />
     <Compile Remove="Permisos\Queries\GetPermisos\PriorityLevelDto.cs" />
