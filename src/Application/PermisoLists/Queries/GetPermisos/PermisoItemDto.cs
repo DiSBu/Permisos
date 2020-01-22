@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Permisos.Application.Common.Mappings;
 using Permisos.Domain.Entities;
+using System;
 
 namespace Permisos.Application.PermisoLists.Queries.GetPermisos
 {
@@ -8,15 +9,13 @@ namespace Permisos.Application.PermisoLists.Queries.GetPermisos
     {
         public long Id { get; set; }
 
-        public int ListId { get; set; }
+        public string NombreEmpleado { get; set; }
 
-        public string Title { get; set; }
+        public string ApellidosEmpleado { get; set; }
 
-        public bool Done { get; set; }
+        public TipoPermiso TipoPermiso { get; set; }
 
-        public int Priority { get; set; }
-
-        public string Note { get; set; }
+        public DateTime FechaPermiso { get; set; }
 
         public void Mapping(Profile profile)
         {

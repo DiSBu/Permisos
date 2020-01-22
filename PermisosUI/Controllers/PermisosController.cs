@@ -4,17 +4,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MediatR;
+using Permisos.Application.PermisoLists.Queries.GetPermisos;
 
 namespace Permisos.WebUI.Controllers
 {
     [Authorize]
-    public class WeatherForecastController : ApiController
+    public class PermisosController : ApiController
     {
+        [AllowAnonymous]
         [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<PermisosVm> Get()
         {
-            return await Mediator.Send(new GetWeatherForecastsQuery());
+            return await Mediator.Send(new GetPermisosQuery());
         }
     }
 }
