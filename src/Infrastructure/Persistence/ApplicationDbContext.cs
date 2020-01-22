@@ -25,6 +25,7 @@ namespace Permisos.Infrastructure.Persistence
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
+            Database.EnsureCreated();
         }
 
         public DbSet<TipoPermiso> TipoPermisos { get; set; }
