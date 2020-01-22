@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { PermisosComponent } from './Permisos/permisos.component';
+import { CreatePermisoComponent } from './Permisos/create-permiso.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PermisosComponent } from './Permisos/permisos.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    PermisosComponent
+    PermisosComponent,
+    CreatePermisoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,6 +28,7 @@ import { PermisosComponent } from './Permisos/permisos.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'permisos', component: PermisosComponent },
+      { path: 'create-permiso', component: CreatePermisoComponent },
     ])
   ],
   providers: [],

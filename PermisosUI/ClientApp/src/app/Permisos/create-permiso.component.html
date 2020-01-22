@@ -1,0 +1,25 @@
+<h1>Solicitar Permiso</h1>
+
+<table class='table' *ngIf="permisos">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre Empleado</th>
+      <th>Apellidos Empleado</th>
+      <th>Tipo Permiso</th>
+      <th>Fecha Permiso</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let permiso of permisos">
+      <td>{{ permiso.Id }}</td>
+      <td>{{ permiso.nombreEmpleado }}</td>
+      <td>{{ permiso.apellidosEmpleado }}</td>
+      <td>{{ permiso.tipoPermiso }}</td>
+      <td>{{ permiso.fechaPermiso }}</td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <input type="button" value="Solicitar" (click)="createPermiso()" />
+</div>

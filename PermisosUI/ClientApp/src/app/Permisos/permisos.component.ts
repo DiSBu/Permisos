@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Permiso } from '../models/models';
 @Component({
   selector: 'app-permisos',
   templateUrl: './permisos.component.html'
@@ -15,14 +15,3 @@ export class PermisosComponent {
   }
 }
 
-interface Permiso {
-  id: number;
-
-  nombreEmpleado: string;
-
-  apellidosEmpleado: string;
-
-  tipoPermiso: number;
-
-  fechaPermiso: Date;
-}
