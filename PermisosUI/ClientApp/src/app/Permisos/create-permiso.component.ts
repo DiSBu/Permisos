@@ -31,20 +31,21 @@ export class CreatePermisoComponent {
     this.clear();
     this.httpClient.post(this.permiso).subscribe((result) => {
       this.permiso.id = result;
+      this.clear();
     }, error => {
       console.error(error);
 
         if (error) {
-          if (error.error.NombreEmpleado) {
-            this.newPermisoEditor.errornombreEmpleado = error.error.NombreEmpleado[0];
+          if (error.response.includes('NombreEmpleado')) {
+            this.newPermisoEditor.errornombreEmpleado = 'Debe completar el Nombre';
             setTimeout(() => document.getElementById("NombreEmpleado").focus(), 250);
           }
-          if (error.error.ApellidosEmpleado) {
-            this.newPermisoEditor.errorapellidosEmpleado = error.error.ApellidosEmpleado[0];
+          if (error.response.includes('ApellidosEmpleado')) {
+            this.newPermisoEditor.errorapellidosEmpleado = 'Debe completar el Apellidos';
             setTimeout(() => document.getElementById("ApellidosEmpleado").focus(), 250);
           }
-          if (error.error.FechaPermiso) {
-            this.newPermisoEditor.errorfechaPermiso = error.error.FechaPermiso[0];
+        if (error.response.includes('FechaPermiso')) {
+            this.newPermisoEditor.errorfechaPermiso = 'Ingrese la fecha';
             setTimeout(() => document.getElementById("FechaPermiso").focus(), 250);
           }
         }
