@@ -1,19 +1,37 @@
 ﻿{
-  "x-generator": "NSwag v13.1.6.0 (NJsonSchema v10.0.28.0 (Newtonsoft.Json v12.0.0.0))",
+  "x-generator": "NSwag v13.2.2.0 (NJsonSchema v10.1.4.0 (Newtonsoft.Json v12.0.0.0))",
   "openapi": "3.0.0",
   "info": {
     "title": "Permisos API",
     "version": "1.0.0"
   },
   "paths": {
-    "/api/Permiso": {
+    "/api/Permisos": {
+      "get": {
+        "tags": [
+          "Permisos"
+        ],
+        "operationId": "Permisos_Get",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermisosVm"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "Permisos"
         ],
-        "operationId": "Permisos_Create",
+        "operationId": "Permisos_Post",
         "requestBody": {
-          "x-name": "command",
+          "x-name": "createPermisoCommand",
           "content": {
             "application/json": {
               "schema": {
@@ -36,264 +54,12 @@
               }
             }
           }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
+        }
       }
-    },
-    "/api/Permisos/{id}": {
-      "put": {
-        "tags": [
-          "Permisos"
-        ],
-        "operationId": "Permisos_Update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "command",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePermisoCommand"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Permisos"
-        ],
-        "operationId": "Permisos_Delete",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
-    },
-    "/api/Permisos/UpdateItemDetails": {
-      "put": {
-        "tags": [
-          "Permisos"
-        ],
-        "operationId": "Permisos_UpdateItemDetails",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "command",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePermisoDetailCommand"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
-    },
-    "/api/TipoPermisos": {
-      "get": {
-        "tags": [
-          "TipoPermisos"
-        ],
-        "operationId": "TipoPermisos_Get",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PermisosVm"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-    },
-    "/api/TipoPermisos/{id}": {
-      "get": {
-        "tags": [
-          "TipoPermisos"
-        ],
-        "operationId": "TipoPermisos_Get2",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/octet-stream": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-    },
+    }
   },
   "components": {
     "schemas": {
-      "CreatePermisoCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "listId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
-      "UpdatePermisoCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "done": {
-            "type": "boolean"
-          }
-        }
-      },
-      "UpdatePermisoDetailCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "listId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "note": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      },
       "PermisosVm": {
         "type": "object",
         "additionalProperties": false,
@@ -313,32 +79,31 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int32"
+            "format": "int64"
           },
-          "title": {
+          "nombreEmpleado": {
             "type": "string",
             "nullable": true
           },
-          "items": {
-            "type": "array",
+          "apellidosEmpleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoPermiso": {
             "nullable": true,
-            "items": {
-              "$ref": "#/components/schemas/PermisoDto"
-            }
-          }
-        }
-      },
-      "CreateTipoPermisoCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "title": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TipoPermiso"
+              }
+            ]
+          },
+          "fechaPermiso": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           }
         }
       },
-      "UpdateTipoPermisoCommand": {
+      "TipoPermiso": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -346,12 +111,42 @@
             "type": "integer",
             "format": "int32"
           },
-          "title": {
+          "descripcion": {
             "type": "string",
             "nullable": true
           }
         }
       },
+      "CreatePermisoCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombreEmpleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellidosEmpleado": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoPermiso": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TipoPermiso"
+              }
+            ]
+          },
+          "fechaPermiso": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
     },
     "securitySchemes": {
       "JWT": {
