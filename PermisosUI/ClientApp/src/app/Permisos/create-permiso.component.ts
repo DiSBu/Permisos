@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Permiso } from '../models/models';
-import { PermisosClient, CreatePermisoCommand } from '../Permisos-api';
+import { PermisosClient, CreatePermisoCommand, TipoPermisosVm } from '../Permisos-api';
 
 @Component({
   selector: 'app-permisos',
@@ -12,13 +12,23 @@ export class CreatePermisoComponent {
   public httpClient: PermisosClient;
   public baseUrl: string;
   public permiso: CreatePermisoCommand;
+  public tipoPermisos: TipoPermisosVm;
 
   public newPermisoEditor: any;
 
   constructor(httpClient: PermisosClient) {
     this.httpClient = httpClient;
+    this.init();
+  }
+
+  private init() {
     this.newPermisoEditor = { apellidosEmpleado: null, nombreEmpleado: null, fechaPermiso: null };
     this.permiso = new CreatePermisoCommand();
+
+    this.httpClient.getTipos().subscribe(result => {
+      this.tipoPermisos = result;
+      console.log(result.lists);
+    }, error => console.error(error));
   }
 
   addPermiso(): void {

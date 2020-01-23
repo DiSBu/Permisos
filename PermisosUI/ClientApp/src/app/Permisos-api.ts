@@ -131,6 +131,54 @@ export class PermisosClient {
         }
         return Observable.of<number>(<any>null);
     }
+
+    getTipos(): Observable<TipoPermisosVm> {
+        let url_ = this.baseUrl + "/api/Permisos/api/TiposPermiso";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).flatMap((response_ : any) => {
+            return this.processGetTipos(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetTipos(<any>response_);
+                } catch (e) {
+                    return <Observable<TipoPermisosVm>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<TipoPermisosVm>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetTipos(response: HttpResponseBase): Observable<TipoPermisosVm> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = TipoPermisosVm.fromJS(resultData200);
+            return Observable.of(result200);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<TipoPermisosVm>(<any>null);
+    }
 }
 
 export class PermisosVm implements IPermisosVm {
@@ -265,6 +313,90 @@ export class TipoPermiso implements ITipoPermiso {
 }
 
 export interface ITipoPermiso {
+    id?: number;
+    descripcion?: string | undefined;
+}
+
+export class TipoPermisosVm implements ITipoPermisosVm {
+    lists?: TipoPermisoDto[] | undefined;
+
+    constructor(data?: ITipoPermisosVm) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            if (Array.isArray(_data["lists"])) {
+                this.lists = [] as any;
+                for (let item of _data["lists"])
+                    this.lists.push(TipoPermisoDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): TipoPermisosVm {
+        data = typeof data === 'object' ? data : {};
+        let result = new TipoPermisosVm();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (Array.isArray(this.lists)) {
+            data["lists"] = [];
+            for (let item of this.lists)
+                data["lists"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface ITipoPermisosVm {
+    lists?: TipoPermisoDto[] | undefined;
+}
+
+export class TipoPermisoDto implements ITipoPermisoDto {
+    id?: number;
+    descripcion?: string | undefined;
+
+    constructor(data?: ITipoPermisoDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.descripcion = _data["descripcion"];
+        }
+    }
+
+    static fromJS(data: any): TipoPermisoDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TipoPermisoDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["descripcion"] = this.descripcion;
+        return data; 
+    }
+}
+
+export interface ITipoPermisoDto {
     id?: number;
     descripcion?: string | undefined;
 }
