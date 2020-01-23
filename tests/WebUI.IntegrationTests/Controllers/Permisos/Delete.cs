@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Permisos.WebUI.IntegrationTests.Controllers.TodoItems
+namespace Permisos.WebUI.IntegrationTests.Controllers.Permisos
 {
     public class Delete : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
@@ -19,9 +19,9 @@ namespace Permisos.WebUI.IntegrationTests.Controllers.TodoItems
         {
             var validId = 1;
 
-            var client = await _factory.GetAuthenticatedClientAsync();
+            var client = await _factory.GetAnonymousClient();
 
-            var response = await client.DeleteAsync($"/api/todoitems/{validId}");
+            var response = await client.DeleteAsync($"/api/Permisos/{validId}");
 
             response.EnsureSuccessStatusCode();
         }
@@ -31,9 +31,9 @@ namespace Permisos.WebUI.IntegrationTests.Controllers.TodoItems
         {
             var invalidId = 99;
 
-            var client = await _factory.GetAuthenticatedClientAsync();
+            var client = await _factory.GetAnonymousClient();
 
-            var response = await client.DeleteAsync($"/api/todoitems/{invalidId}");
+            var response = await client.DeleteAsync($"/api/Permisos/{invalidId}");
 
             response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
         }

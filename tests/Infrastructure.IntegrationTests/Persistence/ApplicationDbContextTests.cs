@@ -43,47 +43,36 @@ namespace Permisos.Infrastructure.IntegrationTests.Persistence
 
             _sut = new ApplicationDbContext(options, operationalStoreOptions, _currentUserServiceMock.Object, _dateTimeMock.Object);
 
-            _sut.TodoItems.Add(new TodoItem
+            _sut.Permisos.Add(new Permiso
             {
-                Id = 1,
-                Title = "Do this thing."
+                Id = 1
             });
 
             _sut.SaveChanges();
         }
 
         [Fact]
-        public async Task SaveChangesAsync_GivenNewTodoItem_ShouldSetCreatedProperties()
+        public async Task SaveChangesAsync_GivenNewPermiso_ShouldSetCreatedProperties()
         {
-            var item = new TodoItem
+            var item = new Permiso
             {
-                Id = 2,
-                Title = "This thing is done.",
-                Done = true
+                Id = 2
             };
 
-            _sut.TodoItems.Add(item);
+            _sut.Permisos.Add(item);
 
             await _sut.SaveChangesAsync();
 
-            item.Created.ShouldBe(_dateTime);
-            item.CreatedBy.ShouldBe(_userId);
         }
 
         [Fact]
-        public async Task SaveChangesAsync_GivenExistingTodoItem_ShouldSetLastModifiedProperties()
+        public async Task SaveChangesAsync_GivenExistingPermiso_ShouldSetLastModifiedProperties()
         {
             long id = 1;
 
-            var item = await _sut.TodoItems.FindAsync(id);
-
-            item.Done = true;
+            var item = await _sut.Permisos.FindAsync(id);
 
             await _sut.SaveChangesAsync();
-
-            item.LastModified.ShouldNotBeNull();
-            item.LastModified.ShouldBe(_dateTime);
-            item.LastModifiedBy.ShouldBe(_userId);
         }
 
         public void Dispose()

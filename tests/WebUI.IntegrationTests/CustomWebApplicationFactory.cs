@@ -63,62 +63,17 @@ namespace Permisos.WebUI.IntegrationTests
                 .UseEnvironment("Test");
         }
 
-        public HttpClient GetAnonymousClient()
+        public async Task<HttpClient> GetAnonymousClient()
         {
             return CreateClient();
         }
 
-        public async Task<HttpClient> GetAuthenticatedClientAsync()
-        {
-            return await GetAuthenticatedClientAsync("jason@clean-architecture", "Permisos!");
-        }
-
-        public async Task<HttpClient> GetAuthenticatedClientAsync(string userName, string password)
-        {
-            var client = CreateClient();
-
-            var token = await GetAccessTokenAsync(client, userName, password);
-
-            client.SetBearerToken(token);
-
-            return client;
-        }
-
-        private async Task<string> GetAccessTokenAsync(HttpClient client, string userName, string password)
-        {
-            var disco = await client.GetDiscoveryDocumentAsync();
-
-            if (disco.IsError)
-            {
-                throw new Exception(disco.Error);
-            }
-
-            var response = await client.RequestPasswordTokenAsync(new PasswordTokenRequest
-            {
-                Address = disco.TokenEndpoint,
-                ClientId = "Permisos.IntegrationTests",
-                ClientSecret = "secret",
-
-                Scope = "Permisos.WebUIAPI openid profile",
-                UserName = userName,
-                Password = password
-            });
-
-            if (response.IsError)
-            {
-                throw new Exception(response.Error);
-            }
-
-            return response.AccessToken;
-        }
-
         public static void SeedSampleData(ApplicationDbContext context)
         {
-            context.TodoItems.AddRange(
-                new TodoItem { Id = 1, Title = "Do this thing." },
-                new TodoItem { Id = 2, Title = "Do this thing too." },
-                new TodoItem { Id = 3, Title = "Do many, many things." },
-                new TodoItem { Id = 4, Title = "This thing is done!", Done = true }
+            context.Permisos.AddRange(
+                new Permiso { Id = 1, NombreEmpleado = "Pete" },
+                new Permiso { Id = 2, NombreEmpleado = "Max" },
+                new Permiso { Id = 3, NombreEmpleado = "David" }
             );
 
             context.SaveChanges();
