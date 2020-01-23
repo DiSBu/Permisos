@@ -2,35 +2,35 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Permiso } from '../models/models';
+import { PermisosClient, CreatePermisoCommand } from '../Permisos-api';
 
 @Component({
   selector: 'app-permisos',
   templateUrl: './create-permiso.component.html'
 })
 export class CreatePermisoComponent {
-  public httpClient: HttpClient;
+  public httpClient: PermisosClient;
   public baseUrl: string;
-  public permisoId: Permiso;
+  public permiso: CreatePermisoCommand;
 
   public newPermisoEditor: any;
 
-  constructor(httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(httpClient: PermisosClient) {
     this.httpClient = httpClient;
-    this.baseUrl = baseUrl;
-    this.newPermisoEditor = { apellidosEmpleado: null, nombreEmpleado: null, fechaPermiso: null};
+    this.newPermisoEditor = { apellidosEmpleado: null, nombreEmpleado: null, fechaPermiso: null };
+    this.permiso = new CreatePermisoCommand();
   }
 
   addPermiso(): void {
-    let permiso = {
-      id: 0,
-      apellidosEmpleado: this.newPermisoEditor.apellidosEmpleado,
-      nombreEmpleado: this.newPermisoEditor.nombreEmpleado,
-      fechaPermiso: this.newPermisoEditor.fechaPermiso,
-    };
+
+    this.permiso.id = 0;
+    this.permiso.apellidosEmpleado = this.newPermisoEditor.apellidosEmpleado;
+    this.permiso.nombreEmpleado = this.newPermisoEditor.nombreEmpleado;
+    this.permiso.fechaPermiso = this.newPermisoEditor.fechaPermiso;
 
     this.clear();
-    this.httpClient.post<Permiso>(this.baseUrl + 'api/Permisos', permiso).subscribe((result) => {
-      this.permisoId = result;
+    this.httpClient.post(this.permiso).subscribe((result) => {
+      this.permiso.id = result;
     }, error => {
       console.error(error);
 

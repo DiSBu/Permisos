@@ -2,7 +2,7 @@
 
 <p *ngIf="!permisos"><em>Loading...</em></p>
 
-<table class='table' *ngIf="permisos">
+<table class='table' *ngIf="this.permisos.lists">
   <thead>
     <tr>
       <th>Id</th>
@@ -13,8 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let permiso of permisos">
-      <td>{{ permiso.Id }}</td>
+    <tr *ngFor="let permiso of this.permisos.lists">
+      <td>{{ permiso.id }}</td>
       <td>{{ permiso.nombreEmpleado }}</td>
       <td>{{ permiso.apellidosEmpleado }}</td>
       <td>{{ permiso.tipoPermiso }}</td>

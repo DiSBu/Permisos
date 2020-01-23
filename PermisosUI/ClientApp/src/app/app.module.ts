@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { PermisosComponent } from './Permisos/permisos.component';
 import { CreatePermisoComponent } from './Permisos/create-permiso.component';
+import { PermisosClient } from './Permisos-api';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { CreatePermisoComponent } from './Permisos/create-permiso.component';
       { path: 'create-permiso', component: CreatePermisoComponent },
     ])
   ],
-  providers: [],
+  providers: [PermisosClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

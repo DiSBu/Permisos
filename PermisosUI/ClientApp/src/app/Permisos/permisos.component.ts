@@ -1,16 +1,18 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Permiso } from '../models/models';
+import { PermisosClient, PermisosVm } from '../Permisos-api';
 @Component({
   selector: 'app-permisos',
   templateUrl: './permisos.component.html'
 })
 export class PermisosComponent {
-  public permisos: Permiso[];
+  public permisos: PermisosVm = new PermisosVm();
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Permiso[]>(baseUrl + 'api/Permisos').subscribe(result => {
+  constructor(httpClient: PermisosClient) {
+    httpClient.get().subscribe(result => {
       this.permisos = result;
+      console.log(result.lists);
     }, error => console.error(error));
   }
 }
