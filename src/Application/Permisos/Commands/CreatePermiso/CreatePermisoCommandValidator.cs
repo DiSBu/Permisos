@@ -12,6 +12,8 @@ namespace Permisos.Application.Permisos.Commands.CreatePermiso
             RuleFor(v => v.NombreEmpleado)
                 .MaximumLength(200)
                 .NotEmpty();
+            RuleFor(v => v.TipoPermiso)
+                .NotEmpty();
             RuleFor(v => v.FechaPermiso)
                 .NotEmpty();
         }

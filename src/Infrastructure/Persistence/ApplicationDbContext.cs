@@ -56,6 +56,11 @@ namespace Permisos.Infrastructure.Persistence
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            builder.Entity<TipoPermiso>().HasData(
+                new TipoPermiso { Id = 1, Descripcion = "Enfermedad"},
+                new TipoPermiso { Id = 2, Descripcion = "Diligencias" },
+                new TipoPermiso { Id = 3, Descripcion = "Vacaciones" });
+
             base.OnModelCreating(builder);
         }
     }

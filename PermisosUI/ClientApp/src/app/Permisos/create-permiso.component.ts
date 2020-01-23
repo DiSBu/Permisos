@@ -36,6 +36,7 @@ export class CreatePermisoComponent {
     this.permiso.id = 0;
     this.permiso.apellidosEmpleado = this.newPermisoEditor.apellidosEmpleado;
     this.permiso.nombreEmpleado = this.newPermisoEditor.nombreEmpleado;
+    this.permiso.tipoPermiso = this.newPermisoEditor.tipoPermiso;
     this.permiso.fechaPermiso = this.newPermisoEditor.fechaPermiso;
 
     this.clear();
@@ -54,7 +55,11 @@ export class CreatePermisoComponent {
             this.newPermisoEditor.errorapellidosEmpleado = 'Debe completar el Apellidos';
             setTimeout(() => document.getElementById("ApellidosEmpleado").focus(), 250);
           }
-        if (error.response.includes('FechaPermiso')) {
+          if (error.response.includes('TipoPermiso')) {
+            this.newPermisoEditor.errortipoPermiso = 'Ingrese el tipo';
+            setTimeout(() => document.getElementById("TipoPermiso").focus(), 250);
+          }
+          if (error.response.includes('FechaPermiso')) {
             this.newPermisoEditor.errorfechaPermiso = 'Ingrese la fecha';
             setTimeout(() => document.getElementById("FechaPermiso").focus(), 250);
           }
