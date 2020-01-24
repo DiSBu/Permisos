@@ -29,13 +29,13 @@ namespace Permisos.Application.Permisos.Commands.CreatePermiso
             }
 
             public async Task<long> Handle(CreatePermisoCommand request, CancellationToken cancellationToken)
-            {
+            {                
                 var entity = new Permiso
                 {
                     Id = request.Id,
                     NombreEmpleado = request.NombreEmpleado,
                     ApellidosEmpleado = request.ApellidosEmpleado,
-                    TipoPermiso = request.TipoPermiso,
+                    TipoPermiso = _context.TipoPermisos.Find(request.TipoPermiso.Id),
                     FechaPermiso = request.FechaPermiso
                 };
 
