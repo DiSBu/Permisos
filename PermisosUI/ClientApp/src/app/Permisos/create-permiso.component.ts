@@ -41,8 +41,8 @@ export class CreatePermisoComponent {
 
     this.clear();
     this.httpClient.post(this.permiso).subscribe((result) => {
-      this.permiso.id = result;
       this.clear();
+      this.newPermisoEditor.success = 'Se agrego con éxito el permiso.'
     }, error => {
       console.error(error);
 
@@ -67,14 +67,7 @@ export class CreatePermisoComponent {
     });
   }
     
-  newPermisoCancelled(): void {
-    //this.newListModalRef.hide();
-    this.newPermisoEditor = {};
-  }
-
   clear(): void {
-    this.newPermisoEditor.errornombreEmpleado = null;
-    this.newPermisoEditor.errorapellidosEmpleado = null;
-    this.newPermisoEditor.errorfechaPermiso = null;
+    this.newPermisoEditor = {};
   }
 }

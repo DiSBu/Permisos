@@ -39,6 +39,9 @@
       <div *ngIf="newPermisoEditor.errorfechaPermiso" class="invalid-feedback alert alert-danger">
         {{ newPermisoEditor.errorfechaPermiso }}
       </div>
+      <div *ngIf="newPermisoEditor.success" class="invalid-feedback alert alert-success">
+        {{ newPermisoEditor.success }}
+      </div>
     </div>
     <div *ngIf="debug">
       <pre>{{ newPermisoEditor | json }}</pre>
@@ -46,7 +49,7 @@
   </div>
   <div class="modal-footer">
     <div class="text-right">
-      <button class="btn btn-default" (click)="newPermisoCancelled()">Cancel</button>
+      <button class="btn btn-default" (click)="clear()">Cancel</button>
       <button class="btn btn-primary" (click)="addPermiso()">Solicitar</button>
     </div>
   </div>
