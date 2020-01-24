@@ -11,7 +11,7 @@
       <label for="apellidosEmpleado">Apellidos Empleado</label>
       <input type="text" class="form-control" id="apellidosEmpleado" placeholder="Apellidos Empleado..." [(ngModel)]="newPermisoEditor.apellidosEmpleado"
              [ngClass]="{ 'is-invalid': newPermisoEditor.errorapellidosEmpleado }" (keyup.enter)="addPermiso()" />
-      <div *ngIf="newPermisoEditor.errorapellidosEmpleado" class="invalid-feedback">
+      <div *ngIf="newPermisoEditor.errorapellidosEmpleado" class="invalid-feedback alert alert-danger">
         {{ newPermisoEditor.errorapellidosEmpleado }}
       </div>
     </div>
@@ -19,7 +19,7 @@
       <label for="nombreEmpleado">Nombres Empleado</label>
       <input type="text" class="form-control" id="nombreEmpleado" placeholder="Nombres Empleado..." [(ngModel)]="newPermisoEditor.nombreEmpleado"
              [ngClass]="{ 'is-invalid': newPermisoEditor.errornombreEmpleado }" (keyup.enter)="addPermiso()" />
-      <div *ngIf="newPermisoEditor.errornombreEmpleado" class="invalid-feedback">
+      <div *ngIf="newPermisoEditor.errornombreEmpleado" class="invalid-feedback alert alert-danger">
         {{ newPermisoEditor.errornombreEmpleado }}
       </div>
     </div>
@@ -28,7 +28,7 @@
       <select class="form-control" [(ngModel)]="newPermisoEditor.tipoPermiso">
         <option [ngValue]="tipoPermiso" *ngFor="let tipoPermiso of this.tipoPermisos.lists">{{ tipoPermiso.descripcion }}</option>
       </select>
-      <div *ngIf="newPermisoEditor.errortipoPermiso" class="invalid-feedback">
+      <div *ngIf="newPermisoEditor.errortipoPermiso" class="invalid-feedback alert alert-danger">
         {{ newPermisoEditor.errortipoPermiso }}
       </div>
     </div>
@@ -36,7 +36,7 @@
       <label for="fechaPermiso">Fecha</label>
       <input type="text" class="form-control" id="fechaPermiso" placeholder="dd/mm/yyy..." [(ngModel)]="newPermisoEditor.fechaPermiso"
              [ngClass]="{ 'is-invalid': newPermisoEditor.errorfechaPermiso }" (keyup.enter)="addPermiso()" />
-      <div *ngIf="newPermisoEditor.errorfechaPermiso" class="invalid-feedback">
+      <div *ngIf="newPermisoEditor.errorfechaPermiso" class="invalid-feedback alert alert-danger">
         {{ newPermisoEditor.errorfechaPermiso }}
       </div>
     </div>

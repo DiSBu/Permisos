@@ -56,7 +56,7 @@ export class CreatePermisoComponent {
             setTimeout(() => document.getElementById("ApellidosEmpleado").focus(), 250);
           }
           if (error.response.includes('TipoPermiso')) {
-            this.newPermisoEditor.errortipoPermiso = 'Ingrese el tipo';
+            this.newPermisoEditor.errortipoPermiso = 'Ingrese el tipo de permiso';
             setTimeout(() => document.getElementById("TipoPermiso").focus(), 250);
           }
           if (error.response.includes('FechaPermiso')) {
