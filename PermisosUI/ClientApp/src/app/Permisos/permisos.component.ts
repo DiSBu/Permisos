@@ -15,5 +15,9 @@ export class PermisosComponent {
       console.log(result.lists);
     }, error => console.error(error));
   }
+
+  delPermiso(permiso: Permiso): void {
+    console.log('Permiso borrado' + permiso.id);
+  }
 }
 

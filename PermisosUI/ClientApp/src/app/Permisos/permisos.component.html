@@ -19,6 +19,7 @@
       <td>{{ permiso.apellidosEmpleado }}</td>
       <td>{{ permiso.tipoPermiso.descripcion }}</td>
       <td>{{ permiso.fechaPermiso }}</td>
+      <td><button class="btn btn-primary" (click)="delPermiso(permiso)">Borrar</button></td>
     </tr>
   </tbody>
 </table>
