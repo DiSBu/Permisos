@@ -9,7 +9,7 @@ namespace Permisos.WebUI.IntegrationTests
     {
         public Task<string> GetUserNameAsync(string userId)
         {
-            return Task.FromResult("jason@clean-architecture");
+            return Task.FromResult("diego.butti@overactive.com");
         }
 
         public Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)

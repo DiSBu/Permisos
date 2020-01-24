@@ -9,7 +9,7 @@ namespace Permisos.Infrastructure.Persistence
     {
         public static async Task SeedAsync(UserManager<ApplicationUser> userManager)
         {
-            var defaultUser = new ApplicationUser { UserName = "jason@clean-architecture", Email = "jason@clean-architecture" };
+            var defaultUser = new ApplicationUser { UserName = "diego.butti@overactive.com", Email = "diego.butti@overactive.com" };
 
             if (userManager.Users.All(u => u.Id != defaultUser.Id))
             {

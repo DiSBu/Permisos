@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="this.tipoPermisos">Tipo Permiso</label>
+      <label for="this.tipoPermisos">Tipo de permiso</label>
       <select class="form-control" [(ngModel)]="newPermisoEditor.tipoPermiso">
         <option [ngValue]="tipoPermiso" *ngFor="let tipoPermiso of this.tipoPermisos.lists">{{ tipoPermiso.descripcion }}</option>
       </select>
