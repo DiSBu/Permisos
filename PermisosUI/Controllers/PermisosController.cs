@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Permisos.Application.Permisos.Queries.GetPermisos;
 using Permisos.Application.Permisos.Queries.GetTipoPermisos;
 using Permisos.Application.Permisos.Commands.CreatePermiso;
+using Permisos.Application.Permisos.Commands.DeletePermiso;
 
 namespace Permisos.WebUI.Controllers
 {
@@ -27,6 +28,13 @@ namespace Permisos.WebUI.Controllers
         public async Task<ActionResult<long>> Post(CreatePermisoCommand createPermisoCommand)
         {
             return await Mediator.Send(createPermisoCommand);
+        }
+
+        [HttpDelete]
+        [Route("api/Permiso")]
+        public async Task<ActionResult<MediatR.Unit>> Delete(DeletePermisoCommand deletePermisoCommand)
+        {
+            return await Mediator.Send(deletePermisoCommand);
         }
     }
 }

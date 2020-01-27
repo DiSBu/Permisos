@@ -179,6 +179,58 @@ export class PermisosClient {
         }
         return Observable.of<TipoPermisosVm>(<any>null);
     }
+
+    delete(deletePermisoCommand: DeletePermisoCommand): Observable<Unit> {
+        let url_ = this.baseUrl + "/api/Permisos/api/Permiso";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(deletePermisoCommand);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",			
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).flatMap((response_ : any) => {
+            return this.processDelete(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<Unit>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<Unit>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<Unit> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = Unit.fromJS(resultData200);
+            return Observable.of(result200);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<Unit>(<any>null);
+    }
 }
 
 export class PermisosVm implements IPermisosVm {
@@ -451,6 +503,72 @@ export interface ICreatePermisoCommand {
     apellidosEmpleado?: string | undefined;
     tipoPermiso?: TipoPermiso | undefined;
     fechaPermiso?: Date;
+}
+
+export class Unit implements IUnit {
+
+    constructor(data?: IUnit) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+    }
+
+    static fromJS(data: any): Unit {
+        data = typeof data === 'object' ? data : {};
+        let result = new Unit();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        return data; 
+    }
+}
+
+export interface IUnit {
+}
+
+export class DeletePermisoCommand implements IDeletePermisoCommand {
+    id?: number;
+
+    constructor(data?: IDeletePermisoCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+        }
+    }
+
+    static fromJS(data: any): DeletePermisoCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new DeletePermisoCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IDeletePermisoCommand {
+    id?: number;
 }
 
 export class ApiException extends Error {
